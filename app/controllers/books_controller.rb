@@ -4,11 +4,18 @@ class BooksController < ApplicationController
   
   def books
     @books = Book.all
+    @book = Book.new
+    # booksｱｸｼｮﾝにnewを統合、books ルートで一覧取得と空のモデルの両方が必要のため
+    # そうしないと空のモデルの代入が行われず、createｱｸｼｮﾝによってparamsで:idにbookが代入されてしまい
+    # ActionController::ParameterMissing　が出る
   end
   
-  def new
-    @book = Book.new
-  end
+  # def new
+  #   @book = Book.new
+  # end
+  # newアクションがどこにもルーティングされていなかった
+  # ActionController::ParameterMissing　が出た原因となった
+  # 新規投稿のform_withでは、ページがロードされた時にまず最初にcreateとは別で空のモデルが入っていなければいけない
   
   def create
     # データ新規登録するためのインスタンス作成
@@ -43,6 +50,7 @@ class BooksController < ApplicationController
   # ストロングパラメータ
   def book_params
     params.require(:book).permit(:title, :body)
+    
     # １．エラー解決　require(:book)を削除 なんで？空だから？
     # ２．編集できない不具合　require(:book)を復元　なんで？patchルートだから？
     # ３．requireがあると新規投稿ができない、ないと編集ができない　？？？

@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   
   get 'books' => 'books#books'
   
-  post '/:id' => 'books#create'
+  post 'book' => 'books#create'
+  
   # url for form_with on books.html
-  get 'booklists' => 'books#books'
+  # get 'booklists' => 'books#books'
   
   get '/:id' => 'books#show', as: 'booklist'
   # as: booklist"S" is already used on form_with and rails will be aborted,
