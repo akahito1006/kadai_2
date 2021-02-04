@@ -7,6 +7,7 @@
   <span>
     <%= link_to "Show", booklist_path(book.id) %>
     <!--also %= link_to "Show", "/booklists/#{book.id}" %>-->
+    <!--名前付きパスで指定するとroutesの編集だけで済むようになり簡単-->
     <%= link_to "Edit", edit_booklist_path(book.id) %>
     
     <%= link_to "Destroy", destroy_booklist_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

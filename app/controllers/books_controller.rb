@@ -42,6 +42,8 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
     # １．エラー解決　require(:book)を削除 なんで？空だから？
     # ２．編集できない不具合　require(:book)を復元　なんで？patchルートだから？
+    # ３．requireがあると新規投稿ができない、ないと編集ができない　？？？
+    # ４．
   end
   
 end

@@ -5,16 +5,16 @@ Rails.application.routes.draw do
   
   get 'books' => 'books#books'
   
-  post 'booklists' => 'books#create'
+  post '/:id' => 'books#create'
   # url for form_with on books.html
   get 'booklists' => 'books#books'
   
-  get 'booklists/:id' => 'books#show', as: 'booklist'
-  # booklist"S" is already used on form_with and rails will be aborted,
+  get '/:id' => 'books#show', as: 'booklist'
+  # as: booklist"S" is already used on form_with and rails will be aborted,
   # or just booklist will now work fine
-  get 'booklists/:id/edit' => 'books#edit', as: 'edit_booklist'
+  get '/:id/edit' => 'books#edit', as: 'edit_booklist'
 
-  patch 'booklists/:id' => 'books#update', as: 'update_booklist'
+  patch '/:id' => 'books#update', as: 'update_booklist'
   
-  delete 'booklists/:id' => 'books#destroy', as: 'destroy_booklist'
+  delete '/:id' => 'books#destroy', as: 'destroy_booklist'
 end
