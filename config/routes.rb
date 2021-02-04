@@ -4,4 +4,17 @@ Rails.application.routes.draw do
   get 'top' => 'tops#top'
   
   get 'books' => 'books#books'
+  
+  post 'booklists' => 'books#create'
+  # url for form_with on books.html
+  get 'booklists' => 'books#books'
+  
+  get 'booklists/:id' => 'books#show', as: 'booklist'
+  # booklist"S" is already used on form_with and rails will be aborted,
+  # or just booklist will now work fine
+  get 'booklists/:id/edit' => 'books#edit', as: 'edit_booklist'
+
+  patch 'booklists/:id' => 'books#update', as: 'update_booklist'
+  
+  delete 'booklists/:id' => 'books#destroy', as: 'destroy_booklist'
 end

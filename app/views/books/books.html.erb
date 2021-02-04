@@ -1,1 +1,28 @@
 <h1>booksページ</h1>
+<% @books.each do |book| %>
+  <p>Title</p>
+  <span><%= book.title %></span>
+  <p>Body</p>
+  <span><%= book.body %></span>
+  <span>
+    <%= link_to "Show", booklist_path(book.id) %>
+    <!--also %= link_to "Show", "/booklists/#{book.id}" %>-->
+    <%= link_to "Edit", edit_booklist_path(book.id) %>
+    
+    <%= link_to "Destroy", destroy_booklist_path(book.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    <!--method: :delete & routes method delete-->
+  </span>
+
+<% end %>
+
+
+<%= form_with model:@book, url:'/booklists', local:true do |f| %>
+<!--URL is just for the post method on routes.rb-->
+  <h4>Title</h4>
+  <%= f.text_field :title %>
+  <h4>Body</h4>
+  <%= f.text_area :body %>
+  <!--submit-->
+  <%= f.submit 'Create Book' %>
+<% end %>
+
