@@ -1,6 +1,15 @@
-<h2>Title:</h2>
-<p><%= @book.title %></p>
-<h2>Body:</h2>
-<p><%= @book.body %></p>
+<p id="notice">
+    <%= notice %>
+</p>
+<p><!--サクセスメッセージ-->
+    <strong>Title:</strong>
+    <%= @book.title %>
+</p>
+<p>
+    <strong>Body:</strong>
+    <%= @book.body %>
+</p>
 <%= link_to "Edit", edit_booklist_path(@book) %>
+|
+<!--↑ 仕切りの線｜-->
 <%= link_to "Back", "/books" %>

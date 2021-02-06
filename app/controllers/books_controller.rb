@@ -9,7 +9,7 @@ class BooksController < ApplicationController
     # そうしないと空のモデルの代入が行われず、createｱｸｼｮﾝによってparamsで:idにbookが代入されてしまい
     # ActionController::ParameterMissing　が出る
   end
-  
+
   # def new
   #   @book = Book.new
   # end
@@ -19,11 +19,15 @@ class BooksController < ApplicationController
   
   def create
     # データ新規登録するためのインスタンス作成
-    book = Book.new(book_params)
+    @book = Book.new(book_params)
     ## データをデータベースに保存するためのsaveメソッド実行
-    book.save
-    # # books画面へリダイレクトする
-    redirect_to booklist_path(book.id)
+    if @book.save
+    # # books画面へリダイレクトする、サクセスメッセージを表示させる
+      redirect_to booklist_path(@book.id), notice: 'Book was successfully created.'
+    else
+      @books = Book.all
+      render :books
+    end
   end
   
   def show
@@ -37,13 +41,13 @@ class BooksController < ApplicationController
   def update
     book = Book.find(params[:id])
     book.update(book_params)
-    redirect_to booklist_path(book.id)
+    redirect_to booklist_path(book.id), notice: 'Book was successfully updated.'
   end
   
   def destroy
     book = Book.find(params[:id])
     book.destroy
-    redirect_to books_path
+    redirect_to books_path, notice: 'Book was successfully destroyed.'
   end
   
   private
