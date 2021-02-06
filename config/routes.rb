@@ -11,10 +11,10 @@ Rails.application.routes.draw do
   # url for form_with on books.html
   # get 'booklists' => 'books#books'
 
-  get '/books/:id' => 'books#show', as: 'booklist'
+  get '/book.:id' => 'books#show', as: 'booklists'
   # as: booklist"S" is already used on form_with and rails will be aborted,
   # or just booklist will now work fine
-  get '/books/:id/edit' => 'books#edit', as: 'edit_booklist'
+  get '/book.:id/edit' => 'books#edit', as: 'edit_book'
 
   patch '/:id' => 'books#update', as: 'update_booklist'
 

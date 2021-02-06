@@ -1,0 +1,11 @@
+<% if @book.errors.any? %>
+<!--createアクションから渡された引数@を使っていく-->
+    <div class="error_explaination">
+      <h2>1 error prohibited this book from being saved:</h2>
+      <ul>
+        <% @book.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+<% end %>

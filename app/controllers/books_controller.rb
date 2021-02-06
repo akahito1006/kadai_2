@@ -20,13 +20,16 @@ class BooksController < ApplicationController
   def create
     # データ新規登録するためのインスタンス作成
     @book = Book.new(book_params)
+    # _error_messages.html.erbに引数を渡すため、ローカルでなくインスタンス引数@として定義する
     ## データをデータベースに保存するためのsaveメソッド実行
     if @book.save
+    # このアクション内では@bookを使っていく、ということ
     # # books画面へリダイレクトする、サクセスメッセージを表示させる
-      redirect_to booklist_path(@book.id), notice: 'Book was successfully created.'
+      redirect_to booklists_path(@book.id), notice: 'Book was successfully created.'
     else
       @books = Book.all
-      render :books
+      # 一覧表示のための引
+      render 'books'
     end
   end
   
@@ -39,15 +42,21 @@ class BooksController < ApplicationController
   end
   
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to booklist_path(book.id), notice: 'Book was successfully updated.'
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+      redirect_to booklists_path(@book.id), notice: 'Book was successfully updated.'
+    else
+      render 'edit'
+    end 
   end
   
   def destroy
-    book = Book.find(params[:id])
-    book.destroy
-    redirect_to books_path, notice: 'Book was successfully destroyed.'
+    @book = Book.find(params[:id])
+    if @book.destroy
+      redirect_to books_path, notice: 'Book was successfully destroyed.'
+    else
+      render 'books'
+    end
   end
   
   private

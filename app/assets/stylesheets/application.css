@@ -60,7 +60,36 @@ td {
   margin-bottom: 10px;
 }
 
+.field_with_errors {
+    padding: 2px;
+    background-color: red;
+    display: table;
+}
+
+/*※field_with_errorsはRailsのform_forを利用したValidationを行うと、
+自動的に設定されるCSS Classです。
+*/
+
 label {
   display: block;
 }
 
+.error_explaination h2{
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0;
+    background-color: #c00;
+    color: #fff;
+}
+
+.error_explaination {
+  width: 450px; 
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}

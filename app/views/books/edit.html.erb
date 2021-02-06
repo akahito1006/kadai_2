@@ -1,12 +1,21 @@
 <h1>Editing Book</h1>
 <%= form_with model:@book, url:"/#{@book.id}", local:true do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>body</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Update Book' %>
+<%= render 'layouts/error_messages', model: f.object %>
+  <div class="field">
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %>
+  </div>
+  <!--class="label"-->
+  <div class="field">
+    <%= f.label :body, "Body" %>
+    <%= f.text_area :body %>
+  </div>
+  
+  <div class="action">
+    <%= f.submit 'Update Book' %>
+  </div>
 <% end %>
-<%= link_to "Show", booklist_path(@book) %>
+<%= link_to "Show", booklists_path(@book) %>
 <!--@があるなら@で-->
 |
 <!--↑ 仕切りの線｜-->
