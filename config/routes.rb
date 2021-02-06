@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   get '/book.:id' => 'books#show', as: 'booklists'
   # as: booklist"S" is already used on form_with and rails will be aborted,
   # or just booklist will now work fine
-  get '/book.:id/edit' => 'books#edit', as: 'edit_book'
+  get '/books/:id/edit' => 'books#edit', as: 'edit_book'
 
   patch '/:id' => 'books#update', as: 'update_booklist'
 
-  delete '/:id' => 'books#destroy', as: 'destroy_booklist'
+  delete '/book.:id' => 'books#destroy', as: 'destroy_booklist'
+# failure 1 expected url /book.1
 end

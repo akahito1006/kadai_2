@@ -15,7 +15,9 @@
     <%= f.submit 'Update Book' %>
   </div>
 <% end %>
-<%= link_to "Show", booklists_path(@book) %>
+<%= link_to "Show", "/books/#{@book.id}" %>
+<!--%= link_to "Show", "/books/#{@book.id}" %-->
+<!--failure-->
 <!--@があるなら@で-->
 |
 <!--↑ 仕切りの線｜-->
