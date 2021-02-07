@@ -45,6 +45,9 @@ describe '投稿のテスト' do
             # Destroyリンク
             show_link = find_all('a')[j+2]
             expect(show_link.native.inner_text).to match(/destroy/i)
+            # p '------------------------------------------------------------'
+            # p show_link[:href]
+            # p book_path(book)
             expect(show_link[:href]).to eq book_path(book)
           end
       end
@@ -69,6 +72,9 @@ describe '投稿のテスト' do
         fill_in 'book[body]', with: Faker::Lorem.characters(number:20)
         click_button 'Create Book'
         expect(page).to have_current_path book_path(Book.last)
+        p '------------------------------------------------------------'
+        p page
+        p book_path(Book.last)
       end
     end
     context 'book削除のテスト' do

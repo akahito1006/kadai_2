@@ -17,14 +17,14 @@
       <td><%= book.title %></td>
       <td><%= book.body %></td>
       <td>
-        <%= link_to "Show", booklists_path(book) %>
+        <%= link_to "Show", book_path(book) %>
         <!--also %= link_to "Show", "/booklists/#{book.id}" %> 名前付きパスで指定するとroutesの編集だけで済むようになり簡単-->
       </td>
       <td>
         <%= link_to "Edit", edit_book_path(book) %>
       </td>
       <td>
-        <%= link_to "Destroy", destroy_booklist_path(book), method: :delete, "data-confirm" => "Are you sure?" %>
+        <%= link_to "Destroy", "/books/#{book.id}", method: :delete, "data-confirm" => "Are you sure?" %>
         <!--method: :delete & routes method delete-->
       </td>
     </tr>
@@ -36,7 +36,7 @@
 
 
 
-<%= form_with model:@book, url:"book", local:true do |f| %>
+<%= form_with model:@book, url:"/books", local:true do |f| %>
 <!--failure url route-->
 <!--URL is just for the post method on routes.rb-->
   <%= render 'layouts/error_messages', model: f.object %>

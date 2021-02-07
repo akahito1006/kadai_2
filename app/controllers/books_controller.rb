@@ -2,7 +2,7 @@ class BooksController < ApplicationController
   def top
   end
   
-  def books
+  def index
     @books = Book.all
     @book = Book.new
     # booksｱｸｼｮﾝにnewを統合、books ルートで一覧取得と空のモデルの両方が必要のため
@@ -25,11 +25,12 @@ class BooksController < ApplicationController
     if @book.save
     # このアクション内では@bookを使っていく、ということ
     # # books画面へリダイレクトする、サクセスメッセージを表示させる
-      redirect_to booklists_path(@book.id), notice: 'Book was successfully created.'
+      redirect_to book_path(@book.id), notice: 'Book was successfully created.'
     else
       @books = Book.all
       # 一覧表示のための引
-      render 'books'
+      render 'index'
+      # failure <= book
     end
   end
   
@@ -44,7 +45,7 @@ class BooksController < ApplicationController
   def update
     @book = Book.find(params[:id])
     if @book.update(book_params)
-      redirect_to booklists_path(@book.id), notice: 'Book was successfully updated.'
+      redirect_to book_path(@book.id), notice: 'Book was successfully updated.'
     else
       render 'edit'
     end 
